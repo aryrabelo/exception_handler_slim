@@ -15,7 +15,7 @@ module ExceptionHandler
 
           #http://blog.habanerohq.com/post/16800611137/selectively-silence-activerecord-logging
           message = ""
-          Rails.logger.silence do #-> stops Error.create from showing output
+          Rails.logger do #-> stops Error.create from showing output
             ExceptionHandler::Error.create info do |error|
               message += "\n======================\n"
               message += "#{error.class_name}:\n"
