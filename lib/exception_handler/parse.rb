@@ -14,6 +14,7 @@ module ExceptionHandler
       request     = ActionDispatch::Request.new(env)
       controller  = request.env['action_controller.instance']
       ignore      = ExceptionHandler::Parser::Ignore.new(exception, request).match?
+      Rails.logger ("Parse#call: ignore #{ignore} exception #{exception} request #{request}")
 
       ExceptionHandler::Parser::Data.create exception, request, controller unless ignore
       raise exception
